@@ -1,0 +1,87 @@
+﻿@page "/raceboard"
+
+
+<h3>RaceBoard</h3>
+
+<div class="container">
+    @foreach (var player in Players)
+    {
+        <div class="row">
+            @for (int col = 0; col < numCols; col++)
+            {
+            <div class="col-sm border" style="background: @player.Color">
+                @if (col == player.Position)
+                {
+                    <img src="./gfx/dino.png" width="80" />
+                }
+            </div>
+            }
+        </div>
+    }
+</div>
+
+<div>
+    <div class="container sm">
+        <div class="row">
+            <div class="col">
+                <p style="border: 2px solid gray; border-radius: 10px; height: 100px; width: 100px;">
+                    <svg height="90" width="90" style="margin: 5px">
+                        <circle cx="45" cy="45" r="40" stroke="black" stroke-width="2" fill="@lastRollColor1" />
+                    </svg>
+                </p>
+            </div>
+            <div class="col">
+                <p style="border: 2px solid gray; border-radius: 10px; height: 100px; width: 100px;">
+                    <svg height="90" width="90" style="margin: 5px">
+                        <circle cx="45" cy="45" r="40" stroke="black" stroke-width="2" fill="@lastRollColor2" />
+                    </svg>
+                </p>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col">
+                <button @onclick="RollTheDice" style="height: 100px; width: 200px">Roll the dice</button>
+            </div>
+            <div class="col">
+                <button @onclick="Reset" style="height: 100px; width: 200px">Reset game</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    private readonly int numCols = 10;
+    private string lastRollColor1 = "White";
+    private string lastRollColor2 = "White";
+    Random rng = new Random();
+
+    private List<DinoRace.Data.Player> Players = new List<Data.Player>
+    {
+        new DinoRace.Data.Player { Color = "Red" },
+        new DinoRace.Data.Player { Color = "Green" },
+        new DinoRace.Data.Player { Color = "Blue" },
+        new DinoRace.Data.Player { Color = "Pink" },
+        new DinoRace.Data.Player { Color = "Yellow" },
+        new DinoRace.Data.Player { Color = "Purple" }
+    };
+
+    private void Reset()
+    {
+        foreach (var player in Players)
+            player.Position = 0;
+    }
+
+    private void RollTheDice()
+    {
+        int roll1 = rng.Next(0, Players.Count);
+        int roll2 = rng.Next(0, Players.Count);
+        var winner1 = Players[roll1];
+        var winner2 = Players[roll2];
+        winner1.Position += 1;
+        winner2.Position += 1;
+        lastRollColor1 = winner1.Color;
+        lastRollColor2 = winner2.Color;
+    }
+}
