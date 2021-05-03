@@ -38,6 +38,13 @@
                 </p>
             </div>
         </div>
+
+        @if (gameOver)
+        {
+        <div class="row">
+            <p>The <span style="color: @gameWinner; font-weight: bold">@gameWinner</span> dinosaur wins the game!</p>
+        </div>
+        }
     
         <div class="row">
             <div class="col">
