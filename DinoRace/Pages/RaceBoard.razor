@@ -4,6 +4,15 @@
 
 <h3>RaceBoard</h3>
 
+@if (gameOver)
+{
+<div class="d-flex justify-content-center align-items-center">
+    <div class="lead">
+        The <span style="color: @gameWinner; font-weight: bold">@gameWinner</span> dinosaur wins the game!
+    </div>
+</div>
+}
+
 <div class="container">
     @foreach (var player in Players)
     {
@@ -21,43 +30,22 @@
     }
 </div>
 
-<div>
-    <div class="container sm">
-        <div class="row">
-            <div class="col">
-                <p style="border: 2px solid gray; border-radius: 10px; height: 100px; width: 100px;">
-                    <svg height="90" width="90" style="margin: 5px">
-                        <circle cx="45" cy="45" r="40" stroke="black" stroke-width="2" fill="@dices[0]" />
-                    </svg>
-                </p>
-            </div>
-            <div class="col">
-                <p style="border: 2px solid gray; border-radius: 10px; height: 100px; width: 100px;">
-                    <svg height="90" width="90" style="margin: 5px">
-                        <circle cx="45" cy="45" r="40" stroke="black" stroke-width="2" fill="@dices[1]" />
-                    </svg>
-                </p>
-            </div>
-        </div>
-
-        @if (gameOver)
-        {
-        <div class="row">
-            <p>The <span style="color: @gameWinner; font-weight: bold">@gameWinner</span> dinosaur wins the game!</p>
-        </div>
-        }
-    
-        <div class="row">
-            <div class="col">
-                <button @onclick="RollTheDice" style="height: 100px; width: 200px">Roll the dice</button>
-            </div>
-            <div class="col">
-                <button @onclick="Reset" style="height: 100px; width: 200px">Reset game</button>
-            </div>
-        </div>
-    </div>
+<div class="d-flex justify-content-center align-items-center" @onclick="RollTheDice">
+    <p style="border: 2px solid gray; border-radius: 10px; height: 100px; width: 100px; margin: 10px">
+        <svg height="90" width="90" style="margin: 5px">
+            <circle cx="45" cy="45" r="40" stroke="black" stroke-width="2" fill="@dices[0]" />
+        </svg>
+    </p>
+    <p style="border: 2px solid gray; border-radius: 10px; height: 100px; width: 100px; margin: 10px">
+        <svg height="90" width="90" style="margin: 5px">
+            <circle cx="45" cy="45" r="40" stroke="black" stroke-width="2" fill="@dices[1]" />
+        </svg>
+    </p>
 </div>
-
+      
+<div class="d-flex justify-content-center align-items-center">
+    <p @onclick="Reset">Reset game</p>
+</div>
 
 @code {
     private static int numCols = 10;
