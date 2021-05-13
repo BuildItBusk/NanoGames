@@ -30,7 +30,7 @@
     }
 </div>
 
-<span class="d-flex justify-content-center align-items-center">
+<div class="d-flex justify-content-center align-items-center">
     <button class="dice" @onclick="RollTheDice">
         <svg>
             <circle cx="45" cy="45" r="40" stroke="black" stroke-width="2" fill="@dices[0]" />
@@ -41,10 +41,12 @@
             <circle cx="45" cy="45" r="40" stroke="black" stroke-width="2" fill="@dices[1]" />
         </svg>
     </button>
-</span>
+</div>
       
 <div class="d-flex justify-content-center align-items-center">
-    <p @onclick="Reset">Reset game</p>
+    <button class="reset-button" @onclick="Reset">
+        Reset game
+    </button>
 </div>
 
 @code {
