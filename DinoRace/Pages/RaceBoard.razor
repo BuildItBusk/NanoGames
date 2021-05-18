@@ -1,26 +1,26 @@
 ﻿@page "/"
 @page "/raceboard"
-
+@using Data
 
 <h3>RaceBoard</h3>
 
-@if (gameOver)
+@if (board.GameOver)
 {
 <div class="d-flex justify-content-center align-items-center">
     <div class="lead">
-        The <span style="color: @gameWinner; font-weight: bold">@gameWinner</span> dinosaur wins the game!
+        The <span style="color: @board.GameWinner.Color; font-weight: bold">@board.GameWinner.Color</span> dinosaur wins the game!
     </div>
 </div>
 }
 
 <div class="container">
-    @foreach (var player in Players)
+    @foreach (var player in board.Players)
     {
         <div class="row">
-            @for (int col = 0; col < numCols; col++)
+            @for (int field = 1; field <= board.NumberOfFields; field++)
             {
             <div class="col-sm border" style="background: @player.Color">
-                @if (col == player.Position)
+                @if (field == player.Position)
                 {
                     <img src="./gfx/dino.png" width="80" />
                 }
@@ -44,62 +44,26 @@
 </div>
       
 <div class="d-flex justify-content-center align-items-center">
-    <button class="reset-button" @onclick="Reset">
+    <button class="reset-button" @onclick="board.ResetGame">
         Reset game
     </button>
 </div>
 
 @code {
-    private static int numCols = 10;
+    private GameBoard board = new GameBoard(numberOfPlayers: 6, numberOfFields: 10);
     private string[] dices = new string[] {"White", "White"};
-    private string gameWinner = string.Empty;
-    private bool gameOver = false;
     Random rng = new Random();
-
-    private List<DinoRace.Data.Player> Players = new List<Data.Player>
-    {
-        new DinoRace.Data.Player { Color = "Red" },
-        new DinoRace.Data.Player { Color = "Green" },
-        new DinoRace.Data.Player { Color = "Blue" },
-        new DinoRace.Data.Player { Color = "Pink" },
-        new DinoRace.Data.Player { Color = "Yellow" },
-        new DinoRace.Data.Player { Color = "Purple" }
-    };
-
-    private void Reset()
-    {
-        gameOver = false;
-        foreach (var player in Players)
-            player.Position = 0;
-    }
 
     private void RollTheDice()
     {
         for (int i = 0; i < dices.Length; i++)
         {
-            if (gameOver)
-            return;
+            if (board.GameOver)
+                return;
 
-            int roll = rng.Next(0, Players.Count);
-            var roundWinner = Players[roll];
-            roundWinner.Position += 1;
-            dices[i] = roundWinner.Color;
-            CheckForGameWinner();
+            int roll = rng.Next(0, board.PlayerCount);
+            var winningColor = board.MovePlayer(roll);
+            dices[i] = winningColor;
         };
-    }
-
-    private void CheckForGameWinner()
-    {
-        foreach (var player in Players)
-        {
-            if (player.Position >= numCols - 1)
-                EndGame(player.Color);
-        }
-    }
-
-    private void EndGame(string colorOfWinner)
-    {  
-        gameWinner = colorOfWinner;
-        gameOver = true;
     }
 }

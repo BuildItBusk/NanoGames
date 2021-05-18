@@ -9,7 +9,7 @@ namespace DinoRace.Data
     public class Player
     {
         public string Color { get; set; }
-        public int Position { get; set; } = 0;
+        public int Position { get; set; } = 1;
 
     }
 }
