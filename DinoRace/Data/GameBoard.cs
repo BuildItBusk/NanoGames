@@ -6,7 +6,7 @@ namespace DinoRace.Data
 {
     public sealed class GameBoard
     {
-        private string[] colors = { "Red", "Blue", "Green", "Yellow", "Purple", "Pink" }; 
+        private string[] colors = { "Blue", "Green", "Pink", "Red", "Teal", "Yellow" }; 
         
         public GameBoard(int numberOfPlayers, int numberOfFields)
         {

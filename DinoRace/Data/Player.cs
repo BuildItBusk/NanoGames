@@ -9,6 +9,7 @@ namespace DinoRace.Data
     public class Player
     {
         public string Color { get; set; }
+        public string IconPath => "./gfx/" + Color + ".png";
         public int Position { get; set; } = 1;
 
     }
