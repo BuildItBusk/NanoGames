@@ -19,10 +19,10 @@
         <div class="row">
             @for (int field = 1; field <= board.NumberOfFields; field++)
             {
-            <div class="col-sm border">
+            <div class="field">
                 @if (field == player.Position)
                 {
-                    <img src=@player.IconPath width="80" />
+                    <img src=@player.IconPath width="80" class="trex-icon"/>
                 }
             </div>
             }
@@ -50,7 +50,7 @@
 </div>
 
 @code {
-    private GameBoard board = new GameBoard(numberOfPlayers: 6, numberOfFields: 10);
+    private GameBoard board = new GameBoard(numberOfPlayers: 6, numberOfFields: 8);
     private string[] dices = new string[] {"White", "White"};
     Random rng = new Random();
 

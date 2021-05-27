@@ -31,3 +31,20 @@
     vertical-align: middle;
     text-align: center;
 }
+
+.field {
+    background-color: antiquewhite;
+    border: 2px solid;
+    border-radius: 5px;
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+    position: relative;
+}
+
+.field .trex-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
