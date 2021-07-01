@@ -2,32 +2,52 @@
 
 <div class="container">
     <span class="question-text">Hvilket dyr starter med bogstavet </span>
-    <span class="question-text letter">T</span>
+    <span class="question-text letter">A</span>
     <span class="question-text">?</span>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col">
-            <a href="#">
-                Dyr 1
-            </a>            
+        <div class="col image-container">
+            <button @onclick="() => CheckAnswer(1)">
+                <img src="./gfx/elephant.png" />
+            </button>
         </div>
-        <div class="col">
-            <a href="#">
-                Dyr 2
-            </a>
+        <div class="col image-container">
+            <button @onclick="() => CheckAnswer(2)">
+                <img src="./gfx/giraffe.jpg" />
+            </button>
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <a href="#">
-                Dyr 3
-            </a>
+        <div class="col image-container">
+            <button @onclick="() => CheckAnswer(3)">
+                <img src="./gfx/hippo.png" />
+            </button>
         </div>
-        <div class="col">
-            <a href="#">
-                Dyr 4
-            </a>
+        <div class="col image-container">
+            <button @onclick="() => CheckAnswer(4)">
+                <img src="./gfx/monkey.jpg" width="360" />
+            </button>
         </div>
     </div>
 </div>
+
+<div style="visibility: @hasGuessedAnimalVisibility()">Ja, det er rigtigt!</div>
+
+
+@code {
+    private bool hasGuessedAnimal = false;
+    
+    private string hasGuessedAnimalVisibility() => hasGuessedAnimal ? "visible" : "hidden";
+
+    private void CheckAnswer(int ans)
+    {
+        if (ans == 4)
+            PlayerWins();
+    }
+
+    private void PlayerWins()
+    {
+        hasGuessedAnimal = true;
+    }
+}
