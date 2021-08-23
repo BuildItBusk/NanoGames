@@ -2,9 +2,10 @@
 <html lang="en">
     <head>
         <title>Add Max - It all adds up</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
     </head>
     <body onload="generateRandomAddition()">
-        <div>
+        <div class="container">
             <span id="firstValue"></span>
             <span> + </span>
             <span id="secondValue">0</span>
@@ -12,11 +13,10 @@
             <span id="result">?</span>
         </div>
         <div>
-            <button id="option1" onclick="checkResult(1)"></button>
-            <button id="option2" onclick="checkResult(2)"></button>
-            <button id="option3" onclick="checkResult(3)"></button>
+            <button id="option1" class="btn btn-outline-dark" onclick="checkResult(1)"></button>
+            <button id="option2" class="btn btn-outline-dark" onclick="checkResult(2)"></button>
+            <button id="option3" class="btn btn-outline-dark" onclick="checkResult(3)"></button>
         </div>
-        <div id="feedback"></div>
 
         <script>
             function generateRandomAddition() {
@@ -32,13 +32,15 @@
                 var trueAnswer = calculateTrueAnswer();
                 var selectedAnswer = Number(document.getElementById("option" + option).innerText);
 
+                document.getElementById("option" + option).classList.remove('btn-outline-dark');
+
                 if (selectedAnswer == trueAnswer)
                 {
-                    var feedback = "Det er korrekt!".fontcolor("green");
+                    document.getElementById("option" + option).classList.add('btn-success');
                 }                    
                 else
                 {
-                    var feedback = "Det er desværre forkert".fontcolor("red");
+                    document.getElementById("option" + option).classList.add('btn-danger');
                 }
                 
                 document.getElementById("feedback").innerHTML = feedback;   
