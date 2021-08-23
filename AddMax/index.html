@@ -5,23 +5,25 @@
         <link rel="stylesheet" href="css/bootstrap.min.css" />
     </head>
     <body onload="generateRandomAddition()">
-        <div class="container">
-            <span id="firstValue"></span>
-            <span> + </span>
-            <span id="secondValue">0</span>
-            <span> = </span>
-            <span id="result">?</span>
-        </div>
-        <div>
-            <button id="option1" class="btn btn-outline-dark" onclick="checkResult(1)"></button>
-            <button id="option2" class="btn btn-outline-dark" onclick="checkResult(2)"></button>
-            <button id="option3" class="btn btn-outline-dark" onclick="checkResult(3)"></button>
+        <div class="container-sm">
+            <div class="display-1">
+                <span id="firstValue"></span>
+                <span> + </span>
+                <span id="secondValue">0</span>
+                <span> = </span>
+                <span id="result">?</span>
+            </div>
+            <div class="d-grid gap-2">
+                <button id="option1" class="btn btn-outline-dark btn-lg" onclick="checkResult(1)"></button>
+                <button id="option2" class="btn btn-outline-dark btn-lg" onclick="checkResult(2)"></button>
+                <button id="option3" class="btn btn-outline-dark btn-lg" onclick="checkResult(3)"></button>
+            </div>
         </div>
 
         <script>
             function generateRandomAddition() {
-                var firstValue = randomInt(0, 10);
-                var secondValue = randomInt(0, 10);
+                var firstValue = randomInt(1, 10);
+                var secondValue = randomInt(1, 10);
                 var result = firstValue + secondValue;
                 document.getElementById("firstValue").innerHTML = firstValue;
                 document.getElementById("secondValue").innerHTML = secondValue;
@@ -53,8 +55,8 @@
                 var fakeAnswer1 = generateFakeAnswer(trueAnswer);
                 var fakeAnswer2 = generateFakeAnswer(trueAnswer);
 
-                while (fakeAnswer2 == fakeAnswer1)
-                    fakeAnswer2 = generateFakeAnswer(trueAnswer);
+                while (fakeAnswer2 == fakeAnswer1 || fakeAnswer2 == trueAnswer)
+                    fakeAnswer2 = fakeAnswer2 + 1;
 
                 const answers = [trueAnswer, fakeAnswer1, fakeAnswer2];
                 answers.sort();
