@@ -1,46 +1,45 @@
-function generateRandomAddition() {
-    var firstValue = randomInt(1, 10);
-    var secondValue = randomInt(1, 10);
-    var result = firstValue + secondValue;
-    document.getElementById("firstValue").innerHTML = firstValue;
-    document.getElementById("secondValue").innerHTML = secondValue;
-    generateAnswerOptions();
+function newAddition() {
+    var firstValue = document.getElementById("firstValue");
+    var secondValue = document.getElementById("secondValue");
+
+    firstValue.innerHTML = randomInt(1, 5);
+    secondValue.innerHTML = randomInt(1, 5);
+
+    updateButtonsWithOptions();
 }
 
 function checkResult(option) {
-    var trueAnswer = calculateCorrectAnswer();
-    var selectedAnswer = Number(document.getElementById("option" + option).innerText);
+    var buttonId = "option" + option;
+    var correctAnswer = calculateCorrectAnswer();
+    var selectedAnswer = Number(document.getElementById(buttonId).innerText);
 
-    document.getElementById("option" + option).classList.remove('btn-outline-dark');
-
-    if (selectedAnswer == trueAnswer)
-    {
-        document.getElementById("option" + option).classList.add('btn-success');
-    }                    
+    if (selectedAnswer == correctAnswer)
+        markAsCorrectAnswer(buttonId);
     else
-    {
-        document.getElementById("option" + option).classList.add('btn-danger');
-    }
+        markAsIncorrectAnswer(buttonId);
     
-    document.getElementById("feedback").innerHTML = feedback;   
-        
-    document.getElementById("result").innerText = trueAnswer;
+    document.getElementById("feedback").innerHTML = feedback;           
+    document.getElementById("result").innerText = correctAnswer;
 }
 
-function generateAnswerOptions() {
-    var trueAnswer = calculateCorrectAnswer();                
-    var fakeAnswer1 = generateIncorrectAnswer(trueAnswer);
-    var fakeAnswer2 = generateIncorrectAnswer(trueAnswer);
+function updateButtonsWithOptions() {
+    var btnOption1  = document.getElementById("option1");
+    var btnOption2  = document.getElementById("option2");
+    var btnOption3  = document.getElementById("option3");
 
-    while (fakeAnswer2 == fakeAnswer1 || fakeAnswer2 == trueAnswer)
-        fakeAnswer2 = fakeAnswer2 + 1;
+    var correctAnswer = calculateCorrectAnswer();                
+    var incorrectAnswer1 = generateIncorrectAnswer(correctAnswer);
+    var incorrectAnswer2 = generateIncorrectAnswer(correctAnswer);
 
-    const answers = [trueAnswer, fakeAnswer1, fakeAnswer2];
+    while (incorrectAnswer2 == incorrectAnswer1 || incorrectAnswer2 == correctAnswer)
+        incorrectAnswer2 = incorrectAnswer2 + 1;
+
+    const answers = [correctAnswer, incorrectAnswer1, incorrectAnswer2];
     answers.sort();
 
-    document.getElementById("option1").innerText = answers[0];
-    document.getElementById("option2").innerText = answers[1];
-    document.getElementById("option3").innerText = answers[2];
+    btnOption1.innerText = answers[0];
+    btnOption2.innerText = answers[1];
+    btnOption3.innerText = answers[2];
 }
 
 function calculateCorrectAnswer() {
@@ -65,4 +64,16 @@ function generateIncorrectAnswer(trueAnswer) {
 
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min) ) + min;
+}
+
+function markAsCorrectAnswer(buttonId) {
+    var button = document.getElementById(buttonId);
+    button.classList.remove("btn-outline-dark")
+    button.classList.add("btn-success")
+}
+
+function markAsIncorrectAnswer(buttonId) {
+    var button = document.getElementById(buttonId);
+    button.classList.remove("btn-outline-dark")
+    button.classList.add("btn-danger")
 }
