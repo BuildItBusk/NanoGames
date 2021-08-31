@@ -5,6 +5,10 @@ function newAddition() {
     firstValue.innerHTML = randomInt(1, 5);
     secondValue.innerHTML = randomInt(1, 5);
 
+    markAsNeutral("option1");
+    markAsNeutral("option2");
+    markAsNeutral("option3");
+
     updateButtonsWithOptions();
 }
 
@@ -76,4 +80,10 @@ function markAsIncorrectAnswer(buttonId) {
     var button = document.getElementById(buttonId);
     button.classList.remove("btn-outline-dark")
     button.classList.add("btn-danger")
+}
+
+function markAsNeutral(buttonId) {
+    var button = document.getElementById(buttonId);
+    button.classList.remove("btn-danger", "btn-success");
+    button.classList.add("btn-outline-dark");
 }
