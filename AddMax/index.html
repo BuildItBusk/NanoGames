@@ -3,25 +3,33 @@
     <head>
         <title>Add Max - It all adds up</title>
         <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/custom.css" />
     </head>
     <body onload="newAddition()">
-        <div class="container-sm border border-dark mt-5">
-            <div class="display-1 text-center">
-                <span id="firstValue"></span>
-                <span> + </span>
-                <span id="secondValue">0</span>
-                <span> = </span>
-                <span id="result">?</span>
+        <div class="container-sm border border-dark mt-5 display-1">
+            <div class="row justify-content-md-center">
+                <div class="col-sm-1" id="firstValue"></div>
+                <div class="col-sm-1"> + </div>
+                <div class="col-sm-1" id="secondValue">0</div>
+                <div class="col-sm-1"> = </div>
+                <div class="col-sm-1" id="result">?</div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col-sm-1"><svg onload="drawDots(1)"></svg></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-1">1</div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-1"></div>
             </div>
             <div class="d-grid gap-2 m-4">
                 <button id="option1" class="btn btn-outline-dark btn-lg" onclick="checkResult(1)"></button>
                 <button id="option2" class="btn btn-outline-dark btn-lg" onclick="checkResult(2)"></button>
                 <button id="option3" class="btn btn-outline-dark btn-lg" onclick="checkResult(3)"></button>
-                <button id="next" class="btn btn-lg" onclick="newAddition()">:before<img src="./gfx/next-icon.jpg" width="75px"/></button>
+                <button id="next" class="btn btn-lg" onclick="newAddition()"><img src="./gfx/next-icon.jpg" width="75px"/></button>
             </div>
         </div>
 
-        <script src="./js/addtion.js">          
-        </script>
+        <script src="./js/addtion.js"></script>
+        <script src="./js/graphics.js"></script>
     </body>
 </html>
