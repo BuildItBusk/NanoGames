@@ -2,8 +2,14 @@ function newAddition() {
     var firstValue = document.getElementById("firstValue");
     var secondValue = document.getElementById("secondValue");
 
-    firstValue.innerHTML = randomInt(1, 5);
-    secondValue.innerHTML = randomInt(1, 5);
+    var val1 = randomInt(1, 5);
+    var val2 = randomInt(1, 5);
+    
+    firstValue.innerHTML = val1;
+    secondValue.innerHTML = val2;
+
+    drawDots("svg1", val1);
+    drawDots("svg2", val2);
 
     markAsNeutral("option1");
     markAsNeutral("option2");
@@ -86,4 +92,20 @@ function markAsNeutral(buttonId) {
     var button = document.getElementById(buttonId);
     button.classList.remove("btn-danger", "btn-success");
     button.classList.add("btn-outline-dark");
+}
+
+function drawDots(svgId, numDots) {
+    const svgns = "http://www.w3.org/2000/svg";
+    const svg = document.getElementById(svgId);
+    let cx = 5;
+    let cy = 5;
+
+    for (let d = 0; d < numDots; d++) {
+        let newDot = document.createElementNS(svgns, "circle");        
+        newDot.setAttribute("cx", cx.toString());
+        newDot.setAttribute("cy", cy.toString());
+        newDot.setAttribute("r", "5");        
+        svg.appendChild(newDot);
+        cx += 14;   
+    }   
 }
