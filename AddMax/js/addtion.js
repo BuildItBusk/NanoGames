@@ -27,9 +27,6 @@ function checkResult(option) {
         markAsCorrectAnswer(buttonId);
     else
         markAsIncorrectAnswer(buttonId);
-    
-    document.getElementById("feedback").innerHTML = feedback;           
-    document.getElementById("result").innerText = correctAnswer;
 }
 
 function updateButtonsWithOptions() {
@@ -97,8 +94,12 @@ function markAsNeutral(buttonId) {
 function drawDots(svgId, numDots) {
     const svgns = "http://www.w3.org/2000/svg";
     const svg = document.getElementById(svgId);
-    let cx = 5;
-    let cy = 5;
+    var cx = 5;
+    var cy = 5;
+
+    while (svg.lastChild) {
+        svg.removeChild(svg.lastChild);
+    }
 
     for (let d = 0; d < numDots; d++) {
         let newDot = document.createElementNS(svgns, "circle");        
