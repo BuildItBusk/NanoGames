@@ -94,8 +94,8 @@ function markAsNeutral(buttonId) {
 function drawDots(svgId, numDots) {
     const svgns = "http://www.w3.org/2000/svg";
     const svg = document.getElementById(svgId);
-    var cx = 5;
-    var cy = 5;
+    var cx = 15;
+    var cy = 10;
 
     while (svg.lastChild) {
         svg.removeChild(svg.lastChild);
@@ -105,8 +105,8 @@ function drawDots(svgId, numDots) {
         let newDot = document.createElementNS(svgns, "circle");        
         newDot.setAttribute("cx", cx.toString());
         newDot.setAttribute("cy", cy.toString());
-        newDot.setAttribute("r", "5");        
+        newDot.setAttribute("r", "10");        
         svg.appendChild(newDot);
-        cx += 14;   
+        cx += 24;   
     }   
 }

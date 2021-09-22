@@ -6,26 +6,35 @@
         <link rel="stylesheet" href="css/custom.css" />
     </head>
     <body onload="newAddition()">
-        <div class="container-sm border border-dark mt-5 display-1">
-            <div class="row justify-content-md-center">
-                <div class="col-sm-1" id="firstValue"></div>
-                <div class="col-sm-1"> + </div>
-                <div class="col-sm-1" id="secondValue">0</div>
-                <div class="col-sm-1"> = </div>
-                <div class="col-sm-1" id="result">?</div>
+        <div class="container font-xl div-padded">
+            <div class="row justify-content-center">
+                <div class="col-sm-2" id="firstValue"></div>
+                <div class="col-sm-2"> + </div>
+                <div class="col-sm-2" id="secondValue"></div>
+                <div class="col-sm-2"> = </div>
+                <div class="col-sm-2">?</div>
             </div>
-            <div class="row justify-content-md-center">
-                <div class="col-sm-1"><svg id="svg1"></svg></div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-1"><svg id="svg2"></svg></div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-1"></div>
+            <div class="row justify-content-center">
+                <div class="col-sm-2"><svg id="svg1"></svg></div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2"><svg id="svg2"></svg></div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
             </div>
-            <div class="d-grid gap-2 m-4">
-                <button id="option1" class="btn btn-outline-dark btn-lg" onclick="checkResult(1)"></button>
-                <button id="option2" class="btn btn-outline-dark btn-lg" onclick="checkResult(2)"></button>
-                <button id="option3" class="btn btn-outline-dark btn-lg" onclick="checkResult(3)"></button>
-                <button id="next" class="btn btn-lg" onclick="newAddition()"><img src="./gfx/next-icon.jpg" width="75px"/></button>
+        </div>
+        
+        <div class="d-grid gap-2 m-4">
+            <div class="row">
+                <button id="option1" class="btn btn-outline-dark btn-lg btn-block" onclick="checkResult(1)"></button>
+            </div>
+            <div class="row">
+                <button id="option2" class="btn btn-outline-dark btn-lg btn-block" onclick="checkResult(2)"></button>
+            </div>
+            <div class="row">
+                <button id="option3" class="btn btn-outline-dark btn-lg btn-block" onclick="checkResult(3)"></button>
+            </div>
+            <div class="row">
+                <button id="next" class="btn btn-lg btn-block" onclick="newAddition()"><img src="./gfx/next-icon.jpg" width="150px"/></button>
             </div>
         </div>
 
