@@ -2,14 +2,14 @@
     border: 1px solid red;
 }
 
-.div-padded {
-    padding: 5% 0;
+.div-top-padded {
+    padding: 10% 0 0 0;
 }
 
 .btn-block {
-    padding: 6% 0; 
+    padding: 5% 0; 
     font-size: 6em;
-    margin: 3% 0;
+    margin: 2% 0;
 }
 
 .font-xl {
